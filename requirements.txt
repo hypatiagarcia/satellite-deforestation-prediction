@@ -1,0 +1,15 @@
+torch
+torchvision
+pytorch-lightning
+segmentation-models-pytorch
+scikit-learn
+rasterio
+geopandas
+numpy
+pandas
+matplotlib
+seaborn
+opencv-python
+albumentations
+tqdm
+scipy

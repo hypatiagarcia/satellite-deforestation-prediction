@@ -1,0 +1,23 @@
+NOTICE
+
+Satellite Image Change Detection Project
+Copyright 2025 Hypatia Beatriz Garcia Maciel
+
+This product includes software and datasets developed by third parties:
+
+- Sentinel-2 imagery provided by Copernicus Programme (European Space Agency).
+- Sentinel-1 SAR imagery provided by Copernicus Programme (European Space Agency).
+- SRTM DEM data provided by NASA and the NGA (public domain).
+- Portions of the code may include contributions under the Apache 2.0 License, MIT License, or other open licenses.
+
+All trademarks referenced herein are the property of their respective owners.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.

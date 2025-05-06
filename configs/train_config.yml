@@ -1,0 +1,73 @@
+# Training Configuration for Deforestation Detection
+
+# -- Data Paths --
+data:
+  # Path to the directory containing stack_tile_*.tif files (relative to project root)
+  stacked_tiles_dir: "data/raw/stacked_tiles"
+  # Path to normalization stats file (relative to project root)
+  normalization_stats_file: "configs/normalization_stats.json"
+  # Paths to list files (relative to project root)
+  train_tiles_list_file: "data/processed/splits/train_tiles.txt"
+  val_tiles_list_file: "data/processed/splits/val_tiles.txt"
+  test_tiles_list_file: "data/processed/splits/test_tiles.txt" # Optional, if used later
+  # Band mapping - Ensure this matches EXACTLY how files were created
+  band_mapping:
+    S1_VV: 0
+    S1_VH: 1
+    S2_B: 2
+    S2_G: 3
+    S2_R: 4
+    S2_N: 5
+    S2_S1: 6
+    S2_S2: 7
+    DEM: 8
+    Label: 9
+
+# -- Training Parameters --
+training:
+  seed: 42
+  device: "cuda"       
+  epochs: 100             # Number of training epochs (puede que necesites más si entrenas desde cero)
+  patch_size: 224        # Size of image patches
+  batch_size: 16         # Training batch size
+  batch_size_val: 32     # Validation batch size
+  patches_per_epoch: null
+  num_workers: 4
+  pin_memory: True
+
+# -- Model Parameters --
+model:
+  architecture: "Unet"
+  backbone: "tu-swin_small_patch4_window7_224"
+  encoder_weights: null 
+
+# -- Loss Function Parameters --
+loss:
+  bce_weight: 1.0     
+  dice_weight: 2.0     
+  bce_pos_weight: "calculate" 
+
+# -- Optimizer Parameters --
+optimizer:
+  name: "AdamW"
+  lr: 0.00005           
+  weight_decay: 0.01
+
+# -- Learning Rate Scheduler --
+scheduler:
+  use: True
+  type: "CosineAnnealingLR" 
+  params:
+    T_max: 100
+    eta_min: 0.000001   
+    #verbose: True
+
+# -- Output Paths --
+output:
+  base_dir: "outputs"
+  run_name: "def_model_run1"
+
+# -- Evaluation --
+evaluation:
+  metric_to_monitor: "f1_score"
+  threshold: 0.5 

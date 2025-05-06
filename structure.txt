@@ -1,0 +1,39 @@
+satellite-change-detection/
+├── data/
+│   ├── raw/               # Raw satellite data (as downloaded from GEE or elsewhere)
+│   │   ├── sentinel2/     # Sentinel-2 RGB images
+│   │   ├── sentinel1/     # Sentinel-1 SAR images
+│   │   ├── srtm/          # SRTM DEM elevation data
+│   │   └── labels/        # Ground truth masks (e.g., forest loss maps)
+│   ├── processed/         # Preprocessed, normalized, stacked tensors (input-ready)
+│   └── tiles/             # (Optional) Small patches (e.g., 256x256 tiles) for training
+│
+├── notebooks/
+│   ├── 01_data_exploration.ipynb      # Explore satellite images, visualize changes
+│   ├── 02_preprocessing_pipeline.ipynb # Resampling, normalizing, stacking
+│   ├── 03_model_training.ipynb         # Model architecture, training loop
+│   └── 04_evaluation_visualization.ipynb # Evaluate, plot predictions
+│
+├── src/                             # Source code (Python scripts)
+│   ├── data/                        
+│   │   ├── download_data.py         # Earth Engine export/download automation
+│   │   ├── preprocessing.py         # Rescaling, stacking bands, tile generation
+│   ├── models/
+│   │   ├── unet.py                  # U-Net or DeepLabV3 model definition
+│   │   ├── loss_functions.py        # Dice Loss, Focal Loss, etc.
+│   ├── train.py                     # Training script (with configs)
+│   ├── evaluate.py                  # Metrics calculation (IoU, F1, Accuracy)
+│   └── utils.py                     # Helpers (metrics, visualization, etc.)
+│
+├── configs/
+│   ├── train_config.yaml             # All hyperparameters and training options
+│   └── data_config.yaml              # Data paths, preprocessing parameters
+│
+├── outputs/
+│   ├── logs/                         # TensorBoard logs, wandb runs (optional)
+│   ├── models/                       # Saved model checkpoints
+│   ├── predictions/                  # Inference output masks (predicted maps)
+│
+├── environment.yml or requirements.txt # Project environment (conda or pip)
+├── README.md                          # Project description, instructions
+└── LICENSE                             # (Optional) Open-source license
